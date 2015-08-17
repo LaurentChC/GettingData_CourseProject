@@ -10,7 +10,7 @@ We suppose that all provided data files are in the working directory and can thu
 
 We will provide for the use of the dplyr package for some table manipulations
 
-## Notation: command lines start with the symbol '>'
+## Notation: command lines start with bar on the left side of the line
 
 >library(dplyr)
 
@@ -56,6 +56,7 @@ We link the activity code to the activity label through a merge. Before, we add 
 
 ### We now extract only the (third) column which contains the activity label
 > act_label_test <- as.data.frame(act_label_test_ord[,3]) 
+
 Attention: act_label_test_ord[,3] is a factor. For usage further down, we had to transform into dataframe.
 
 > names(act_label_test) <- "activity"
