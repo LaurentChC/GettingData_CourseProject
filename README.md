@@ -16,7 +16,9 @@ We will provide for the use of the dplyr package for some table manipulations
 
 ### We read in the .txt files. As data are separated by the tab, we read them in with the read.table function that has this separator as default value
 
-> features <- read.table("features.txt") # we check dimensions : dim(features) (561,2)
+> features <- read.table("features.txt") 
+
+We check dimensions : dim(features) (561,2)
 
 > test_X <- read.table("X_test.txt")
 > test_y <- read.table("y_test.txt")

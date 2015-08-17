@@ -112,4 +112,4 @@ by_subjectactivity <- group_by(reducedTable, subject, activity)
 tidyTable <- by_subjectactivity %>% summarise_each(funs(mean))
 
 ## We write the obtained dataframe into a .txt file
-write.table(tidyTable,"tidyTable.txt",row.names = FALSE)
+write.table(tidyTable,"tidyTable.txt", row.names = FALSE)
