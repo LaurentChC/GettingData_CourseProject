@@ -34,10 +34,15 @@ We check dimensions: dim(train_X) (7352,561), dim(train_y) (7352,1) dim(train_su
 We infer, that the features file represents the column names of the measurement tables. We set the variable names 
 
 > names(test_X) <- features$V2
+
 > names(test_y) <- "activity"
+
 > names(subject_test) <- "subject"
+
 > names(train_X) <- features$V2
+
 > names(train_y) <- "activity"
+
 > names(subject_train) <- "subject"
 
 We now replace the activity code of the test_y (train_y) files by the activity labels. We load the activity_labels.txt file as correspondance table
@@ -65,14 +70,19 @@ Attention: act_label_test_ord[,3] is a factor. For usage further down, we had to
 
 ### We do the same as above, now with the train_y table. Replace 'test' in the script above by 'train'
 > train_y_expand <- mutate(train_y, rank = as.integer(rownames(train_y)))
+
 > act_label_train_help <- merge(train_y_expand, activity_correspondance, by.x = "activity", by.y = "V1", all = TRUE)
+
 > act_label_train_ord <- arrange(act_label_train_help, rank)
+
 > act_label_train <- as.data.frame(act_label_train_ord[,3])
+
 > names(act_label_train) <- "activity"
 
 ### Binding the subject and activity columns on the left to the measurement tables
 
 > test_data <- cbind(subject_test, act_label_test, test_X, deparse.level = 1)
+
 > train_data <- cbind(subject_train, act_label_train, train_X, deparse.level = 1)
 
 ### We now put the test_data and train_data tables together by a row bind
@@ -84,6 +94,7 @@ dimension check: dim(all_data) (10299,563)
 For that purpose, we must identify the columns where the column name includes 'mean' or 'std'. For further analysis (aggregation), we must also keep the 'subject' and 'activity' columns.
 
 > reducedTable <- all_data[,grepl("subject|activity|std|mean", names(all_data))]
+
 dimension check: dim(reducedTable) (10299,81)
 
 ### We then aggregate by grouping along the 2 columns, aggregation function 'mean'
@@ -91,6 +102,7 @@ Our interpretation here is that the averaging is performed over the subject x ac
 
 ### Grouping implies that the 2 relevant columns are coerced as factors
 > reducedTable$subject <- as.factor(reducedTable$subject)
+
 > reducedTable$activity <- as.factor(reducedTable$activity)
 
 ### Putting the 2 factors together, we contruct the grouped dataframe
@@ -101,4 +113,4 @@ Using the summarise_each function of the dplyr package with relevant syntax, and
 > tidyTable <- by_subjectactivity %>% summarise_each(funs(mean))
 
 ### We write the obtained dataframe into a .txt file
-> write.table(tidyTable,"tidyTable.txt",row.names = FALSE)
+> write.table(tidyTable,"tidyTable.txt", row.names = FALSE)
