@@ -17,33 +17,50 @@ Quotation from the 'README.txt' (see below):
 
 The files provided through this course, and used here are the following:
 
-1 README.txt: general description of the experiment and the provided data files
-2 features.info.txt: more detailed information on the measured data
-3 features.txt: the list of the 561 measures or measure aggregates,
-4 X_test.txt: a table with dimension (2947,561), where the 561 columns represent the different measurements or measurement aggregates
-5 y_test.txt: a (2947,1) table that contains numbers between 1 and 6 and that encode the 6 different activities mentioned above. 
-6 subject_test.txt: a (2947,1) table that contains numbers between 1 and 30 and encode the 30 individuals with whom the measurements were established.
-7 X_train.txt: a table with dimension (7352,561), where the 561 columns represent the different measurements or measurement aggregates
-8 y_train.txt: a (7352,1) table that contains numbers between 1 and 6 and that encode the 6 different activities mentioned above. 
-9 subject_train.txt: a (7352,1) table that contains numbers between 1 and 30 and encode the 30 individuals with whom the measurements were established.
-10 acivity_labels.txt: a correspondance table with dimension (6,2) that links the activity code to the activity label in plain text.
+1. README.txt: general description of the experiment and the provided data files
+
+2. features.info.txt: more detailed information on the measured data
+
+3. features.txt: the list of the 561 measures or measure aggregates,
+
+4. X_test.txt: a table with dimension (2947,561), where the 561 columns represent the different measurements or measurement aggregates
+
+5. y_test.txt: a (2947,1) table that contains numbers between 1 and 6 and that encode the 6 different activities mentioned above. 
+
+6. subject_test.txt: a (2947,1) table that contains numbers between 1 and 30 and encode the 30 individuals with whom the measurements were established.
+
+7. X_train.txt: a table with dimension (7352,561), where the 561 columns represent the different measurements or measurement aggregates
+
+8. y_train.txt: a (7352,1) table that contains numbers between 1 and 6 and that encode the 6 different activities mentioned above. 
+
+9. subject_train.txt: a (7352,1) table that contains numbers between 1 and 30 and encode the 30 individuals with whom the measurements were established.
+
+10. acivity_labels.txt: a correspondance table with dimension (6,2) that links the activity code to the activity label in plain text.
 
 Note : we infer from the dimensions of the data tables that 
 1. the features.txt data represent the descriptive variable names of the X_test.txt and X_train.txt measuremnt data
+
 2. The y_test data represent the activities to link to the rows of the X_test data, ie row n of y_test indicates the activity for which the measuremnts in row n of table X_test were performed. The same holds for the y_train and X_train data.
+
 3. The subject_test.txt data represent the subject to link to the rows of the X_test data, ie row n of y_test indicates the individual for which the measurements in row n of table X_test were performed. The same holds for the subject_train and X_train data.
 
 ## Construction of the tidyTable.txt data table
 We constructed the table through the follwing steps:
+
 1. For X_test and X_train separately, we define the descriptive variable names by setting the data of the features.txt file as names to the X_test and X_train tables.
+
 2. For the y_test and y_train data separatley, we replace the code by the plain text name to obtain descriptive labels. We use the activity_lables.txt table for this transformation.
+
 3. We respectively bind the subject and the (transformed) activty test resp. train columns to the left of the X_test resp. X_train tables.
+
 4. We then aggregate these two tables by the rows, thus obtaining a new table with dimension (10299=2947+7352), 563=2+561)
+
 5. We now select only the columns featuring in their varibale names either the 'mean' or the 'std' sequence, and thus select 79 columns.
+
 6. For these measruements, we average over the subject x activity cross section, using the mean function. Since for each individual we have measures for each activity, we end up with 30 x 6 = 180 data rows.
 
 ## References
-1. Davide Anguita, Alessandro Ghio, Luca Oneto, Xavier Parra and Jorge L. Reyes-Ortiz. Human Activity Recognition on Smartphones using a Multiclass Hardware-Friendly Support Vector Machine. International Workshop of Ambient Assisted Living (IWAAL 2012). Vitoria-Gasteiz, Spain. Dec 2012
+[1]. Davide Anguita, Alessandro Ghio, Luca Oneto, Xavier Parra and Jorge L. Reyes-Ortiz. Human Activity Recognition on Smartphones using a Multiclass Hardware-Friendly Support Vector Machine. International Workshop of Ambient Assisted Living (IWAAL 2012). Vitoria-Gasteiz, Spain. Dec 2012
 
 ## Licence (reprinted from the README.txt)
 Use of this dataset in publications must be acknowledged by referencing the following publication [1] 
