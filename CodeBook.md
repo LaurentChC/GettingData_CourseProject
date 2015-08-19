@@ -4,9 +4,9 @@ The CodeBook provides the description of the the data that is contained in the '
 
 ## Description of the data
 
-The data table is about measurements that stem from a project 'Human Activity Recognition Using Smartphones Dataset' (see below).
+The data table is about measurements that stem from the project 'Human Activity Recognition Using Smartphones Dataset' (see below).
 - The data table contains 180 rows and 81 columns. Each row represents for one subject/activity combination (columns 1 and 2) the average values of 79 measured data. Since we have 30 individuals in the experiment, and each individual practised in the experiment the 6 defined activities, we thus arrive at the 180 columns.
-- The 79 columns represent measurement aggregates, where the orginal variable name (that was maintained in the given table) contained either the 'mean' or the 'std' string.
+- The 79 columns represent measurement aggregates, where the orginal variable names (that was maintained in the given table) contained either the 'mean' or the 'std' string.
 
 ## Data sources
 Data were provided by the Coursera Datascience course, more precisely within the Getting and Cleaning Data Module, as a course project (course that started on 6 August 2015).
@@ -25,7 +25,7 @@ The files provided through this course, and used here are the following:
 
 4. X_test.txt: a table with dimension (2947,561), where the 561 columns represent the different measurements or measurement aggregates
 
-5. y_test.txt: a (2947,1) table that contains numbers between 1 and 6 and that encode the 6 different activities mentioned above. 
+5. y_test.txt: a (2947,1) table that contains numbers between 1 and 6 that encode the 6 different activities mentioned above. 
 
 6. subject_test.txt: a (2947,1) table that contains numbers between 1 and 30 and encode the 30 individuals with whom the measurements were established.
 
@@ -35,12 +35,12 @@ The files provided through this course, and used here are the following:
 
 9. subject_train.txt: a (7352,1) table that contains numbers between 1 and 30 and encode the 30 individuals with whom the measurements were established.
 
-10. acivity_labels.txt: a correspondance table with dimension (6,2) that links the activity code to the activity label in plain text.
+10. activity_labels.txt: a correspondance table with dimension (6,2) that links the activity code to the activity label in plain text.
 
 Note : we infer from the dimensions of the data tables that 
-1. the features.txt data represent the descriptive variable names of the X_test.txt and X_train.txt measuremnt data
+1. the features.txt data represent the descriptive variable names of the X_test.txt and X_train.txt measurement data
 
-2. The y_test data represent the activities to link to the rows of the X_test data, ie row n of y_test indicates the activity for which the measuremnts in row n of table X_test were performed. The same holds for the y_train and X_train data.
+2. The y_test data represent the activities to link to the rows of the X_test data, ie row n of y_test indicates the activity for which the measurements in row n of table X_test were performed. The same holds for the y_train and X_train data.
 
 3. The subject_test.txt data represent the subject to link to the rows of the X_test data, ie row n of y_test indicates the individual for which the measurements in row n of table X_test were performed. The same holds for the subject_train and X_train data.
 
@@ -49,15 +49,15 @@ We constructed the table through the follwing steps:
 
 1. For X_test and X_train separately, we define the descriptive variable names by setting the data of the features.txt file as names to the X_test and X_train tables.
 
-2. For the y_test and y_train data separatley, we replace the code by the plain text name to obtain descriptive labels. We use the activity_lables.txt table for this transformation.
+2. For the y_test and y_train data separately, we replace the code by the plain text name to obtain descriptive labels. We use the activity_lables.txt table for this transformation.
 
 3. We respectively bind the subject and the (transformed) activty test resp. train columns to the left of the X_test resp. X_train tables.
 
 4. We then aggregate these two tables by the rows, thus obtaining a new table with dimension (10299=2947+7352), 563=2+561)
 
-5. We now select only the columns featuring in their varibale names either the 'mean' or the 'std' sequence, and thus select 79 columns.
+5. We now select only the columns featuring in their variable names either the 'mean' or the 'std' sequence, and thus select 79 columns.
 
-6. For these measruements, we average over the subject x activity cross section, using the mean function. Since for each individual we have measures for each activity, we end up with 30 x 6 = 180 data rows.
+6. For these measurements, we average over the subject x activity cross section, using the mean function. Since for each individual we have measures for each activity, we end up with 30 x 6 = 180 data rows.
 
 ## References
 [1]. Davide Anguita, Alessandro Ghio, Luca Oneto, Xavier Parra and Jorge L. Reyes-Ortiz. Human Activity Recognition on Smartphones using a Multiclass Hardware-Friendly Support Vector Machine. International Workshop of Ambient Assisted Living (IWAAL 2012). Vitoria-Gasteiz, Spain. Dec 2012
